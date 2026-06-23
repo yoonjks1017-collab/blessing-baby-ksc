@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -6,15 +6,17 @@
   <title>축복이와 함께하는 우리집</title>
   <style>
     :root {
-      --bg: #0f172a;
-      --card: rgba(20, 29, 61, 0.92);
-      --text: #f8fafc;
-      --muted: #94a3b8;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f9;
+      --text: #102a43;
+      --muted: #64748b;
       --accent: #38bdf8;
-      --accent-strong: #7dd3fc;
+      --accent-strong: #0ea5e9;
+      --success: #2dd4bf;
       --danger: #fb7185;
-      --radius: 24px;
-      --shadow: 0 24px 80px rgba(15, 23, 42, 0.35);
+      --radius: 26px;
+      --shadow: 0 24px 60px rgba(16, 42, 67, 0.08);
     }
 
     * {
@@ -24,64 +26,69 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Inter", system-ui, sans-serif;
+      font-family: "Noto Sans KR", system-ui, sans-serif;
       color: var(--text);
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 25%),
-        linear-gradient(180deg, #020617 0%, #08102a 100%);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 26%),
+        linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
     }
 
     .page {
-      max-width: 520px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 20px 18px 36px;
+      padding: 24px 18px 36px;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 18px;
+    .hero {
+      background: var(--surface);
+      border: 1px solid rgba(16, 42, 67, 0.08);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 20px;
     }
 
-    header h1 {
-      margin: 0;
+    .hero-title {
       font-size: clamp(2rem, 6vw, 3rem);
       line-height: 1.05;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0;
     }
 
-    header p {
-      margin: 12px auto 0;
-      max-width: 32rem;
+    .hero-subtitle {
+      margin: 12px 0 0;
       color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.6;
+      font-size: 1rem;
+      line-height: 1.7;
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid rgba(148, 163, 184, 0.12);
+      background: var(--surface);
+      border: 1px solid rgba(16, 42, 67, 0.08);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 18px;
+      padding: 22px;
       margin-bottom: 18px;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
     }
 
     .card h2 {
-      margin: 0 0 12px;
+      margin: 0 0 16px;
       font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
     }
 
     .form-group {
       display: grid;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
     label {
       display: grid;
-      gap: 6px;
-      font-size: 0.95rem;
+      gap: 8px;
       color: var(--muted);
+      font-size: 0.95rem;
     }
 
     input[type="text"],
@@ -89,27 +96,22 @@
     input[type="file"],
     textarea {
       width: 100%;
-      border: 1px solid rgba(148, 163, 184, 0.16);
-      border-radius: 16px;
-      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(16, 42, 67, 0.12);
+      border-radius: 18px;
+      background: var(--surface-soft);
       color: var(--text);
       padding: 14px 16px;
       font-size: 1rem;
     }
 
-    input[type="file"] {
-      padding: 10px 12px;
-      background: rgba(15, 23, 42, 0.7);
-    }
-
     textarea {
+      min-height: 92px;
       resize: vertical;
-      min-height: 80px;
     }
 
     .row {
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     button {
@@ -117,10 +119,11 @@
       border-radius: 16px;
       padding: 14px 18px;
       font-size: 1rem;
-      color: #0f172a;
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
       cursor: pointer;
-      transition: transform 0.2s ease, filter 0.2s ease;
+      transition: transform 0.18s ease, filter 0.18s ease;
     }
 
     button:hover {
@@ -130,52 +133,48 @@
 
     button.secondary {
       color: var(--text);
-      background: rgba(148, 163, 184, 0.14);
+      background: #f1f5f9;
+      box-shadow: inset 0 0 0 1px rgba(16, 42, 67, 0.08);
     }
 
     button.danger {
-      background: #fb7185;
-      color: #0f172a;
+      background: linear-gradient(135deg, #fb7185, #f97316);
     }
 
     .help-text {
       color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
-      margin-top: 8px;
+      font-size: 0.94rem;
+      line-height: 1.6;
     }
 
     .message {
       padding: 12px 14px;
       border-radius: 14px;
       font-size: 0.95rem;
-      line-height: 1.4;
-      margin-top: 10px;
+      line-height: 1.5;
+      margin-top: 12px;
     }
 
     .message.success {
-      background: rgba(52, 211, 153, 0.14);
-      color: #a7f3d0;
+      background: rgba(45, 212, 191, 0.14);
+      color: #0f766e;
     }
 
     .message.error {
       background: rgba(251, 113, 133, 0.14);
-      color: #fecdd3;
+      color: #b91c1c;
     }
 
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 14px;
     }
 
     .countdown-card {
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.12);
+      background: var(--surface-soft);
       border-radius: 20px;
       padding: 18px;
       text-align: center;
@@ -183,110 +182,119 @@
 
     .countdown-card strong {
       display: block;
-      font-size: 2.2rem;
+      font-size: 2rem;
       line-height: 1;
-      letter-spacing: -0.03em;
       margin-bottom: 8px;
-      transition: transform 0.3s ease;
+      color: #0f172a;
     }
 
     .countdown-card span {
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.95rem;
     }
 
-    .pulse {
-      animation: pulse 0.7s ease;
-    }
+    .pulse { animation: pulse 0.7s ease; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.06); } 100% { transform: scale(1); } }
 
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.08);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    .gallery-grid {
-      display: grid;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .gallery-grid img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.16);
-    }
-
+    .gallery-grid,
     .guestbook-list {
       display: grid;
-      gap: 12px;
-      margin-top: 12px;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .gallery-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(16, 42, 67, 0.08);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-card time {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      background: rgba(255,255,255,0.92);
+      color: #102a43;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
     }
 
     .guestbook-item {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.12);
-      border-radius: 18px;
-      padding: 14px 16px;
+      background: var(--surface-soft);
+      border: 1px solid rgba(16, 42, 67, 0.08);
+      border-radius: 20px;
+      padding: 16px;
     }
 
     .guestbook-item time {
       display: block;
       color: var(--muted);
       font-size: 0.85rem;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .top-bar {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
-      gap: 10px;
       align-items: center;
+      gap: 10px;
       margin-bottom: 14px;
     }
 
     .top-bar strong {
-      font-size: 0.95rem;
-      color: var(--text);
+      color: #0f172a;
     }
 
-    @media (min-width: 640px) {
-      .row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .section-divider {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
     }
+
+    .section-divider h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+
+    @media (min-width: 640px) { .row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
 </head>
 <body>
   <div class="page">
     <header>
-      <h1>축복이와 함께하는 우리집</h1>
-      <p>처음 접속 시 이름과 4자리 숫자 비밀번호를 입력해 메일로 권한을 요청하세요. 담당자가 승인하면 이후에는 같은 정보로 바로 접속할 수 있습니다.</p>
+      <div class="hero">
+        <div class="hero-title">축복이와 함께하는<br/>우리집</div>
+        <p class="hero-subtitle">밝고 따뜻한 분위기로 꾸민 축복이 공간입니다. 로그인 후 사진 갤러리와 방명록을 자유롭게 이용해 보세요.</p>
+      </div>
     </header>
 
     <section id="auth-screen" class="card">
       <h2>접속 권한 확인</h2>
+      <div id="login-info" class="help-text">처음 접속하면 이름과 4자리 비밀번호를 입력하고 권한 요청을 진행하세요. 승인된 이후 같은 정보로 바로 접속할 수 있습니다.</div>
       <form id="auth-form">
         <div class="form-group">
-          <label>
-            이름
+          <label>이름
             <input type="text" id="name-input" placeholder="이름을 입력하세요" autocomplete="name" required />
           </label>
-          <label>
-            4자리 비밀번호
+          <label>4자리 비밀번호
             <input type="password" id="password-input" placeholder="1234" maxlength="4" pattern="\d{4}" required />
           </label>
-          <label>
-            승인 코드
-            <input type="text" id="approval-input" placeholder="관리자 승인 코드 (승인 후 입력)" autocomplete="off" />
+          <label>승인 코드
+            <input type="text" id="approval-input" placeholder="관리자 승인 코드 입력" autocomplete="off" />
           </label>
         </div>
         <div class="row">
@@ -294,44 +302,30 @@
           <button type="submit" id="login-btn" class="secondary">로그인</button>
         </div>
       </form>
-      <p class="help-text">요청 후 담당자가 승인 코드를 보내주면 입력하고 로그인하세요. 승인된 이후에는 이름/비밀번호로 바로 접속할 수 있습니다.</p>
       <div id="auth-message"></div>
     </section>
 
     <main id="app-screen" class="hidden">
       <div class="top-bar">
         <strong id="welcome-text">환영합니다!</strong>
-        <button id="logout-btn" class="danger secondary">로그아웃</button>
+        <button id="logout-btn" class="secondary danger">로그아웃</button>
       </div>
 
       <section class="card">
-        <h2>축복이 탄생까지 남은 시간</h2>
+        <h2>축복이 탄생일까지 남은 시간</h2>
         <div class="countdown-grid">
-          <div class="countdown-card">
-            <strong id="days">0</strong>
-            <span>일</span>
-          </div>
-          <div class="countdown-card">
-            <strong id="hours">00</strong>
-            <span>시간</span>
-          </div>
-          <div class="countdown-card">
-            <strong id="minutes">00</strong>
-            <span>분</span>
-          </div>
-          <div class="countdown-card">
-            <strong id="seconds">00</strong>
-            <span>초</span>
-          </div>
+          <div class="countdown-card"><strong id="days">0</strong><span>일</span></div>
+          <div class="countdown-card"><strong id="hours">00</strong><span>시간</span></div>
+          <div class="countdown-card"><strong id="minutes">00</strong><span>분</span></div>
+          <div class="countdown-card"><strong id="seconds">00</strong><span>초</span></div>
         </div>
       </section>
 
       <section class="card">
-        <h2>사진 갤러리</h2>
+        <div class="section-divider"><h3>사진 갤러리</h3><span class="help-text">사진을 올리고 서로의 순간을 함께 나눠요.</span></div>
         <form id="gallery-form">
           <div class="form-group">
-            <label>
-              사진 선택
+            <label>사진 선택
               <input type="file" id="photo-input" accept="image/*" />
             </label>
           </div>
@@ -341,15 +335,14 @@
       </section>
 
       <section class="card">
-        <h2>축복이에게 한마디</h2>
+        <div class="section-divider"><h3>한줄 방명록</h3><span class="help-text">축복이에게 전하는 마음을 남겨보세요.</span></div>
         <form id="guestbook-form">
           <div class="form-group">
-            <label>
-              메시지
+            <label>메시지
               <textarea id="message-input" maxlength="120" placeholder="축복이에게 남기고 싶은 말을 적어주세요." required></textarea>
             </label>
           </div>
-          <button type="submit">남기기</button>
+          <button type="submit">등록하기</button>
         </form>
         <div id="guestbook-list" class="guestbook-list"></div>
       </section>
@@ -359,7 +352,6 @@
   <script>
     const MANAGER_EMAIL = "yoonjks1017@gmail.com";
     const APPROVAL_CODE = "BLESSING2026";
-
     const authScreen = document.getElementById("auth-screen");
     const appScreen = document.getElementById("app-screen");
     const authForm = document.getElementById("auth-form");
@@ -368,22 +360,19 @@
     const passwordInput = document.getElementById("password-input");
     const approvalInput = document.getElementById("approval-input");
     const authMessage = document.getElementById("auth-message");
+    const loginInfo = document.getElementById("login-info");
     const welcomeText = document.getElementById("welcome-text");
     const logoutBtn = document.getElementById("logout-btn");
-
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
-
     const galleryForm = document.getElementById("gallery-form");
     const photoInput = document.getElementById("photo-input");
     const galleryGrid = document.getElementById("gallery-grid");
-
     const guestbookForm = document.getElementById("guestbook-form");
     const messageInput = document.getElementById("message-input");
     const guestbookList = document.getElementById("guestbook-list");
-
     const targetDate = new Date("2026-10-23T00:00:00");
 
     function loadApprovedUser() {
@@ -400,31 +389,20 @@
 
     function openMailClient(name, password) {
       const subject = encodeURIComponent("축복이 홈페이지 접속 권한 요청");
-      const body = encodeURIComponent(
-        `안녕하세요,\n\n이름: ${name}\n비밀번호: ${password}\n\n위 정보로 축복이 홈페이지 접속 권한을 요청합니다.\n\n감사합니다.`
-      );
+      const body = encodeURIComponent(`안녕하세요,\n\n이름: ${name}\n비밀번호: ${password}\n\n접속 권한을 요청합니다.\n`);
       window.location.href = `mailto:${MANAGER_EMAIL}?subject=${subject}&body=${body}`;
     }
 
     function requestAccess() {
       const name = nameInput.value.trim();
       const password = passwordInput.value.trim();
-
       if (!validateCredentials(name, password)) {
         setMessage("이름과 4자리 숫자 비밀번호를 정확히 입력하세요.", "error");
         return;
       }
-
-      localStorage.setItem(
-        "blessingAccessRequest",
-        JSON.stringify({ name, password, requestedAt: new Date().toISOString() })
-      );
-
+      localStorage.setItem("blessingAccessRequest", JSON.stringify({ name, password, requestedAt: new Date().toISOString() }));
       openMailClient(name, password);
-      setMessage(
-        "요청 메일이 열렸습니다. 담당자로부터 승인 코드를 받으면 로그인하세요.",
-        "success"
-      );
+      setMessage("메일 클라이언트가 열렸습니다. 담당자에게 승인 코드를 요청하세요.", "success");
     }
 
     function approveUser(name, password) {
@@ -441,6 +419,7 @@
       appScreen.classList.remove("hidden");
       welcomeText.textContent = `${name}님, 축복이 페이지에 오신 것을 환영합니다!`;
       setMessage("", "success");
+      loginInfo.classList.add("hidden");
     }
 
     function handleLogin(event) {
@@ -448,28 +427,20 @@
       const name = nameInput.value.trim();
       const password = passwordInput.value.trim();
       const approvalCode = approvalInput.value.trim();
-
       if (!validateCredentials(name, password)) {
         setMessage("이름과 4자리 숫자 비밀번호를 정확히 입력하세요.", "error");
         return;
       }
-
       if (isApprovedUser(name, password)) {
         login(name);
         return;
       }
-
       if (approvalCode && approvalCode === APPROVAL_CODE) {
         approveUser(name, password);
-        setMessage("승인 코드가 확인되었습니다. 이제 접속할 수 있습니다.", "success");
         login(name);
         return;
       }
-
-      setMessage(
-        "승인되지 않은 사용자입니다. 먼저 권한 요청 후 관리자 승인 코드를 입력하거나, 이미 승인된 정보로 로그인하세요.",
-        "error"
-      );
+      setMessage("승인되지 않은 사용자입니다. 권한 요청 후 승인 코드를 입력해 주세요.", "error");
     }
 
     function updateCountdownValue(el, value) {
@@ -481,7 +452,6 @@
     function updateCountdown() {
       const now = new Date();
       const diff = targetDate - now;
-
       if (diff <= 0) {
         updateCountdownValue(daysEl, "0");
         updateCountdownValue(hoursEl, "00");
@@ -489,13 +459,11 @@
         updateCountdownValue(secondsEl, "00");
         return;
       }
-
       const totalSeconds = Math.floor(diff / 1000);
       const days = Math.floor(totalSeconds / 86400);
       const hours = Math.floor((totalSeconds % 86400) / 3600);
       const minutes = Math.floor((totalSeconds % 3600) / 60);
       const seconds = totalSeconds % 60;
-
       updateCountdownValue(daysEl, days.toString());
       updateCountdownValue(hoursEl, String(hours).padStart(2, "0"));
       updateCountdownValue(minutesEl, String(minutes).padStart(2, "0"));
@@ -517,12 +485,14 @@
         galleryGrid.innerHTML = `<p class="help-text">아직 등록된 사진이 없어요. 사진을 추가해보세요.</p>`;
         return;
       }
-
       items.slice().reverse().forEach((item) => {
-        const img = document.createElement("img");
-        img.src = item.data;
-        img.alt = `갤러리 이미지 ${item.date}`;
-        galleryGrid.appendChild(img);
+        const card = document.createElement("div");
+        card.className = "gallery-card";
+        card.innerHTML = `
+          <img src="${item.data}" alt="갤러리 사진" />
+          <time>${new Date(item.date).toLocaleString("ko-KR", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" })}</time>
+        `;
+        galleryGrid.appendChild(card);
       });
     }
 
@@ -531,19 +501,14 @@
         setMessage("사진을 선택해 주세요.", "error");
         return;
       }
-
       const reader = new FileReader();
       reader.onload = function () {
         const items = loadGallery();
-        items.push({
-          id: Date.now(),
-          date: new Date().toISOString(),
-          data: reader.result,
-        });
+        items.push({ id: Date.now(), date: new Date().toISOString(), data: reader.result });
         saveGallery(items);
         renderGallery();
         photoInput.value = "";
-        setMessage("사진이 갤러리에 추가되었습니다.", "success");
+        setMessage("갤러리에 사진이 추가되었습니다.", "success");
       };
       reader.readAsDataURL(file);
     }
@@ -559,12 +524,10 @@
     function renderGuestbook() {
       const entries = loadGuestbook();
       guestbookList.innerHTML = "";
-
       if (entries.length === 0) {
         guestbookList.innerHTML = `<p class="help-text">첫 번째 메시지를 남겨보세요!</p>`;
         return;
       }
-
       entries.slice().reverse().forEach((entry) => {
         const item = document.createElement("div");
         item.className = "guestbook-item";
@@ -578,51 +541,41 @@
 
     function addGuestbookEntry(text) {
       const entries = loadGuestbook();
-      entries.push({
-        id: Date.now(),
-        date: new Date().toISOString(),
-        text: text.trim(),
-      });
+      entries.push({ id: Date.now(), date: new Date().toISOString(), text: text.trim() });
       saveGuestbook(entries);
       renderGuestbook();
     }
 
     requestBtn.addEventListener("click", requestAccess);
     authForm.addEventListener("submit", handleLogin);
-
     galleryForm.addEventListener("submit", function (event) {
       event.preventDefault();
       addPhotoToGallery(photoInput.files[0]);
     });
-
     guestbookForm.addEventListener("submit", function (event) {
       event.preventDefault();
       const message = messageInput.value.trim();
       if (!message) {
-        setMessage("남기고 싶은 메시지를 작성해 주세요.", "error");
+        setMessage("메시지를 입력해 주세요.", "error");
         return;
       }
       addGuestbookEntry(message);
       messageInput.value = "";
       setMessage("한마디가 등록되었습니다.", "success");
     });
-
     logoutBtn.addEventListener("click", function () {
       authScreen.classList.remove("hidden");
       appScreen.classList.add("hidden");
       setMessage("로그아웃되었습니다. 다시 로그인하세요.", "success");
       approvalInput.value = "";
+      loginInfo.classList.remove("hidden");
     });
 
     function initialize() {
       const approved = loadApprovedUser();
       if (approved) {
-        setMessage(
-          `이미 승인된 사용자 정보가 있습니다. ${approved.name}님은 이름과 비밀번호로 로그인하세요.`,
-          "success"
-        );
+        setMessage(`${approved.name}님은 이미 승인된 사용자입니다. 이름과 비밀번호로 로그인하세요.`, "success");
       }
-
       renderGallery();
       renderGuestbook();
       updateCountdown();
